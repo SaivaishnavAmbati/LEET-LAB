@@ -1,21 +1,26 @@
-import express from 'express';
-import { authMiddleware, checkAdmin } from '../middleware/auth.middleware.js';
-import { createProblem } from '../controllers/problem.controller.js';
-
+import express from "express";
+import { authMiddleware, checkAdmin } from "../middleware/auth.middleware.js";
+import {
+  createProblem,
+  deleteProblem,
+  getAllProblems,
+  getAllProblemsSolvedByUser,
+  getProblemById,
+  updateproblem,
+} from "../controllers/problem.controller.js";
 
 const problemRoutes = express.Router();
 
+problemRoutes.post("/create-problem", authMiddleware, checkAdmin, createProblem);
 
-problemRoutes.post("/create-problem" , authMiddleware ,checkAdmin, createProblem)
+problemRoutes.get("/get-problems", authMiddleware, getAllProblems);
 
-problemRoutes.get("/get-problems", authMiddleware , getAllProblems);
+problemRoutes.get("/get-problem/:id", authMiddleware, getProblemById);
 
-problemRoutes.get("/get-problem/:id",authMiddleware,getProblemById);
+problemRoutes.put("/update-problem/:id", authMiddleware, checkAdmin, updateproblem);
 
-problemRoutes.put("/update-problem/:id", authMiddleware,checkAdmin,updateproblem)
+problemRoutes.delete("/delete-problem/:id", authMiddleware, checkAdmin, deleteProblem);
 
-problemRoutes.delete("/delete-problem/:id",authMiddleware, checkAdmin, deleteProblem)
-
-problemRoutes.get("/get-solved-problems",authMiddleware,getAllProblemsSolvedByUser);
+problemRoutes.get("/get-solved-problems", authMiddleware, getAllProblemsSolvedByUser);
 
 export default problemRoutes;
