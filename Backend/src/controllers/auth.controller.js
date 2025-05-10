@@ -31,7 +31,7 @@ const newUser = await db.user.create({
 
 const token = jwt.sign({id:newUser.id},process.env.JWT_SECRET , {
     expiresIn:"7d"
-})
+}) 
 
 res.cookie("jwt" , token,{
     httpOnly:true,
