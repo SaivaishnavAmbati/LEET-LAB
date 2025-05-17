@@ -55,7 +55,7 @@ export const createProblem = async (req, res) => {
         const result = results[i];
         console.log("results--------", result);
         // console.log(
-        //   `Testcases ${i + 1} and Language ${language} ---- result ${JSON.stringify(
+        //   `testcases ${i + 1} and Language ${language} ---- result ${JSON.stringify(
         //     result.status.description
         //   )}`
         // );
